@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>請選擇學院</h2>
+<select id = "college-list" onchange="collegeChange()"></select>
+<h2>該學院的所有科系</h2>
+<select id = "dept-list"></select>
+
+<p id="demo"></p>
+
+<script>
+var colleges=["商學院","工學院","資電學院"];
+var businessDepts = ["會計學系","國際經營與貿易學系","財稅學系","行銷學系"];
+var engineeringDepts = ["工業工程學系","化學工程學系","精密系統設計系"];
+var computerDepts = ["資訊工程學系","電機工程學系","通訊工程學系"];
+
+var collegeElm = document.getElementById("college-list");
+var deptElm = document.getElementById("dept-list");
+//var options = "";
+populateData(collegeElm,colleges);
+populateData(deptElm,businessDepts);
+
+function collegeChange()
+{
+	var selIndex = collegeElm.options[collegeElm.selectedIndex].value;
+	switch(selIndex)
+	{
+		case"0":
+			populateData(deptElm,businessDepts);
+			break;
+		case"1":
+			populateData(deptElm,engineeringDepts);
+			break;
+		case"2":
+			populateData(deptElm,computerDepts);
+			break;
+		default:
+			console.log("Not Accept!");
+	}
+}
+function populateData(selElm, data)
+{
+	var options = " ";
+	for(var i=0;i<data.length;i++)
+	{
+		options = options + '<option value="'+i+'">'+data[i]+'</option>';
+	}
+	selElm.innerHTML = options;
+}
+
+
+</script>
+
+</body>
+</html>
